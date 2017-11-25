@@ -10,25 +10,27 @@
 #include <stdlib.h>
 
 typedef struct {
+    int frecventa;
     int caracter;
     struct Nod *stanga, *dreapta;
 } Nod;
 
-void inserare(int caracter, struct node **x) {
+void inserare(int frecventa, int caracter, struct node **x) {
     if(*x== 0)
     {
         *x = (struct node*) malloc(sizeof(struct node));
-        (*x)->key_value = caracter;
+        (*x)->frecventa = frecventa;
+        (*x)->caracter = caracter;
         (*x)->stanga = 0;
         (*x)->dreapta = 0;
     }
-    else if(caracter<(*x)->caracter)
+    else if(frecventa<(*x)->frecventa)
     {
-        inserare( caracter, &(*x)->stanga);
+        inserare(frecventa, caracter, &(*x)->stanga);
     }
-    else if(caracter>(*x)->caracter)
+    else if(frecventa>(*x)->frecventa)
     {
-        inserare(caracter, &(*x)->dreapta);
+        inserare(frecventa, caracter, &(*x)->dreapta);
     }
 }
 
