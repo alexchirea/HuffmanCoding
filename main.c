@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "codificare.h"
+#include "definitii.h"
 
 //Creat de Alexandru-Cornel Chirea
 //Univ. Bucuresti, Facultatea de Matematica si Informatica

@@ -2,6 +2,7 @@
 // Created by Alexandru Chirea on 25.11.2017.
 //
 #include <string.h>
+#include "definitii.h"
 
 #ifndef HUFFMANCODING_CODIFICARE_H
 #define HUFFMANCODING_CODIFICARE_H
@@ -27,4 +28,6 @@ void codificare (FILE *fisier, char* intrare, int* frecv, int *nrcar, int *start
         }
     }
     fclose(fisier);
+
+    struct Nod *root = 0;
 }
