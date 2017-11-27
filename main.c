@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "codificare.h"
+#include "grafica.h"
+
 
 //Creat de Alexandru-Cornel Chirea
 //Univ. Bucuresti, Facultatea de Matematica si Informatica

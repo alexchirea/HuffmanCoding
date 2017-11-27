@@ -16,9 +16,9 @@ typedef struct {
 } Nod;
 
 void inserare(int frecventa, int caracter, struct node **x) {
-    if(*x== 0)
+    if(*x==0)
     {
-        *x = (struct node*) malloc(sizeof(struct node));
+        *x=(struct node*) malloc(sizeof(struct node));
         (*x)->frecventa = frecventa;
         (*x)->caracter = caracter;
         (*x)->stanga = 0;
