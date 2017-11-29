@@ -19,6 +19,7 @@ int main() {
     switch (optiune) {
         case 1:
             codificare(f);
+            showWin();
             break;
         case 2:
             //decodificare
