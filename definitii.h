@@ -2,11 +2,6 @@
 // Created by Alexandru Chirea on 25.11.2017.
 //
 
-#ifndef HUFFMANCODING_DEFINITII_H
-#define HUFFMANCODING_DEFINITII_H
-
-#endif //HUFFMANCODING_DEFINITII_H
-
 #include <stdlib.h>
 
 typedef struct {

@@ -6,8 +6,7 @@
 //Univ. Bucuresti, Facultatea de Matematica si Informatica
 //CTI - Gr. 154
 
-int main() {
-
+int main () {
     //Fisierul din care se citeste textul de (de)codificat.
     FILE *f = fopen("huffman.txt","r");
 
@@ -19,7 +18,6 @@ int main() {
     switch (optiune) {
         case 1:
             codificare(f);
-            showWin();
             break;
         case 2:
             //decodificare
