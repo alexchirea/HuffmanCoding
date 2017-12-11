@@ -2,8 +2,10 @@
 // Created by Alexandru Chirea on 25.11.2017.
 //
 #include <string.h>
-//#include "definitii.h"
 #include "sortare.h"
+
+#ifndef HUFFMANCODING_CODIFICARE_H
+#define HUFFMANCODING_CODIFICARE_H
 
 int min(int a, int b) {
     return (a>b)?b:a;
@@ -49,3 +51,5 @@ void codificare (FILE *fisier) {
 
     //struct Nod *root = 0;
 }
+
+#endif HUFFMANCODING_CODIFICARE_H

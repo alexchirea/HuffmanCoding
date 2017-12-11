@@ -5,8 +5,6 @@
 #ifndef HUFFMANCODING_SORTARE_H
 #define HUFFMANCODING_SORTARE_H
 
-#endif //HUFFMANCODING_SORTARE_H
-
 void sortare(int* frecv, int valori[200][2], int k) {
     int i, o=0, aux, caract;
     while (o==0) {
@@ -24,3 +22,5 @@ void sortare(int* frecv, int valori[200][2], int k) {
         }
     }
 }
+
+#endif HUFFMANCODING_SORTARE_H
