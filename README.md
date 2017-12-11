@@ -1,2 +1,12 @@
 # Huffman Coding (UniProject)
-In computer science and information theory, a Huffman code is a particular type of optimal prefix code that is commonly used for lossless data compression. The process of finding and/or using such a code proceeds by means of Huffman coding, an algorithm developed by David A. Huffman while he was a Sc.D. student at MIT, and published in the 1952 paper "A Method for the Construction of Minimum-Redundancy Codes".
+This is a school project about Huffman Coding.
+
+Alexandru Chirea - Faculty of Mathematics and Computer Science, Univeristy of Bucharest
+
+E-Mail: alexchirea@icloud.com
+
+## Bibliografie
+1. https://ocw.cs.pub.ro/courses/sd-ca/teme/doc-tema04
+2. https://www.scribd.com/document/51830377/Codare-Huffman
+3. http://andrei.clubcisco.ro/cursuri/f/f-sym/5master/aac-tdmrc/7_Arbori%20Huffman.pdf
+4. http://andrei.clubcisco.ro/cursuri/f/f-sym/5master/aac-tdmrc/6_Codificare%20Huffman.pdf
