@@ -30,13 +30,13 @@ void codificare(FILE *fisier) {
         }
     }
 
-    listaNoduri = (struct Nod **) malloc(sizeof(struct Nod*) * k);
+    listaNoduri = (struct Nod **) malloc(sizeof(struct Nod *) * k);
 
     k = 0;
 
     for (i = start; i <= stop; i++) {
         if (frecv[i]) {
-            struct Nod* nodNou = (struct Nod *) malloc(sizeof(struct Nod));
+            struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
             nodNou->caracter = i;
             nodNou->valoare = frecv[i];
             listaNoduri[k] = nodNou;
