@@ -2,21 +2,15 @@
 // Created by Alexandru Chirea on 25.11.2017.
 //
 #include <string.h>
-#include "sortare.h"
+#include <stdlib.h>
+#include "definitii.h"
 
 #ifndef HUFFMANCODING_CODIFICARE_H
 #define HUFFMANCODING_CODIFICARE_H
 
-int min(int a, int b) {
-    return (a>b)?b:a;
-}
+void codificare(FILE *fisier) {
+    int i, frecv[500] = {0}, nrcar = 0, start = 9999, stop = 0, k = 0;
 
-int max(int a, int b) {
-    return (a<b)?b:a;
-}
-
-void codificare (FILE *fisier) {
-    int i, frecv[500]={0}, valori[200][2], nrcar=0, start=9999, stop=0, k=0;
     char intrare[1001];
 
     while (fgets(intrare, sizeof(intrare), fisier)) {
@@ -27,29 +21,42 @@ void codificare (FILE *fisier) {
             nrcar++;
         }
     }
+
     fclose(fisier);
 
-    for (i=start; i<=stop; i++) {
+    for (i = start; i <= stop; i++) {
         if (frecv[i]) {
             k++;
-            valori[k][0]=i;
-            valori[k][1]=frecv[i];
         }
     }
 
-    sortare(frecv,valori,k);
+    listaNoduri = (struct Nod **) malloc(sizeof(struct Nod*) * k);
 
+    k = 0;
+
+    for (i = start; i <= stop; i++) {
+        if (frecv[i]) {
+            struct Nod* nodNou = (struct Nod *) malloc(sizeof(struct Nod));
+            nodNou->caracter = i;
+            nodNou->valoare = frecv[i];
+            listaNoduri[k] = nodNou;
+            k++;
+        }
+    }
+
+    //printf("%d", k);
+
+    listaNoduri = sortare(listaNoduri, k - 1);
     //Afisare frecvente
-    /*printf("\n");
-    for (i=1; i<=k; i++) {
-        printf("%c\t",valori[i][0]);
+    printf("\n");
+    for (i = 0; i < k; i++) {
+        printf("%c\t", listaNoduri[i]->caracter);
     }
     printf("\n");
-    for (i=1; i<=k; i++) {
-        printf("%d\t",valori[i][1]);
-    }*/
+    for (i = 0; i < k; i++) {
+        printf("%d\t", listaNoduri[i]->valoare);
+    }
 
-    //struct Nod *root = 0;
 }
 
 #endif HUFFMANCODING_CODIFICARE_H
