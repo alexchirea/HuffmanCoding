@@ -49,10 +49,25 @@ void parcurgere(struct Nod *nod) {
         printf("%d %c\n", nod->valoare, nod->caracter);
         parcurgere(nod->st);
         parcurgere(nod->dr);
-        free(nod);
+        printf("\n");
     } else {
         printf("%d %c\t", nod->valoare, nod->caracter);
-        free(nod);
+    }
+}
+
+int cauta(int caracter, struct Nod *nod, int pos, int *arr, FILE *g) {
+    if (nod->st != NULL) {
+        arr[pos] = 0;
+        cauta(caracter,nod->st,pos+1,arr,g);
+
+        arr[pos] = 1;
+        cauta(caracter,nod->dr,pos+1,arr,g);
+    }
+    else {
+        if (nod->caracter == caracter) {
+            for (int i=0; i<pos; i++)
+                fprintf(g,"%d",arr[i]);
+        }
     }
 }
 

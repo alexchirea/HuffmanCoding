@@ -8,10 +8,11 @@
 #ifndef HUFFMANCODING_CODIFICARE_H
 #define HUFFMANCODING_CODIFICARE_H
 
-void codificare(FILE *fisier) {
-    int i, frecv[500] = {0}, nrcar = 0, start = 9999, stop = 0, k = 0;
+void codificare(char *fisier) {
+    FILE *f = fopen(fisier, "r");
+    int i, frecv[500] = {0}, nrcar = 0, start = 9999, stop = 0, k = 0, height;
     char intrare[1001];
-    while (fgets(intrare, sizeof(intrare), fisier)) {
+    while (fgets(intrare, sizeof(intrare), f)) {
         for (i = 0; i < strlen(intrare); i++) {
             frecv[intrare[i]]++;
             start = min(start, intrare[i]);
@@ -19,7 +20,7 @@ void codificare(FILE *fisier) {
             nrcar++;
         }
     }
-    fclose(fisier);
+    fclose(f);
     for (i = start; i <= stop; i++) {
         if (frecv[i]) {
             k++;
@@ -32,6 +33,8 @@ void codificare(FILE *fisier) {
             struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
             nodNou->caracter = i;
             nodNou->valoare = frecv[i];
+            nodNou->st = NULL;
+            nodNou->dr = NULL;
             listaNoduri[k] = nodNou;
             k++;
         }
@@ -41,6 +44,7 @@ void codificare(FILE *fisier) {
     while (o) {
         struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
         nodNou->valoare = listaNoduri[0]->valoare + listaNoduri[1]->valoare;
+        nodNou->caracter = 0;
         nodNou->st = listaNoduri[0];
         nodNou->dr = listaNoduri[1];
         listaNoduri[0] = nodNou;
@@ -52,8 +56,32 @@ void codificare(FILE *fisier) {
             listaNoduri[i] = listaNoduri[i + 1];
         }
         sortare(listaNoduri, o - 1); // ??????
+        height++;
     }
-    parcurgere(listaNoduri[0]);
+    //parcurgere(listaNoduri[0]);
+    struct Nod *root = (struct Nod *) malloc(sizeof(struct Nod));
+    root = listaNoduri[0];
+    int pos;
+    int *arr = (int*)malloc(sizeof(int)*height);
+
+    f = fopen(fisier, "r");
+    FILE *g = fopen("output.txt","w");
+    while (fgets(intrare, sizeof(intrare), f)) {
+        for (i = 0; i < strlen(intrare); i++) {
+            pos=0;
+            cauta(intrare[i], root, pos, arr, g);
+        }
+    }
+    fclose(f);
+    fclose(g);
+
+    /*for (i = start; i <= stop; i++) {
+        if (frecv[i]) {
+            pos = 0;
+            printf("%c ", i);
+            cauta(i, root, pos, arr,g);
+        }
+    }*/
     elibereaza(listaNoduri[0]);
     free(listaNoduri);
 }

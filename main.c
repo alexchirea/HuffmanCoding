@@ -7,8 +7,6 @@
 //CTI - Gr. 154
 
 int main() {
-    //Fisierul din care se citeste textul de (de)codificat.
-    FILE *f = fopen("huffman.txt", "r");
 
     int optiune; //1 codificare sau 2 decodificare
 
@@ -17,7 +15,7 @@ int main() {
     optiune = 1;
     switch (optiune) {
         case 1:
-            codificare(f);
+            codificare("huffman.txt");
             break;
         case 2:
             //decodificare
