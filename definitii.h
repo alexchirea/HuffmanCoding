@@ -18,7 +18,6 @@ struct Nod {
     struct Nod *st;
     struct Nod *dr;
 };
-struct Nod **listaNoduri;
 
 void adaugare();
 
@@ -53,6 +52,16 @@ void parcurgere(struct Nod *nod) {
         free(nod);
     } else {
         printf("%d %c\t", nod->valoare, nod->caracter);
+        free(nod);
+    }
+}
+
+void elibereaza(struct Nod *nod) {
+    if (nod->st != NULL) {
+        elibereaza(nod->st);
+        elibereaza(nod->dr);
+        free(nod);
+    } else {
         free(nod);
     }
 }
