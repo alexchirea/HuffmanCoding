@@ -55,6 +55,16 @@ void parcurgere(struct Nod *nod) {
     }
 }
 
+void printArbore(struct Nod *nod, FILE *g) {
+    if (nod->st != NULL) {
+        fprintf(g,"#");
+        printArbore(nod->st,g);
+        printArbore(nod->dr,g);
+    } else {
+        fprintf(g,"%c", nod->caracter);
+    }
+}
+
 int cauta(int caracter, struct Nod *nod, int pos, int *arr, FILE *g) {
     if (nod->st != NULL) {
         arr[pos] = 0;

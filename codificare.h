@@ -63,13 +63,16 @@ void codificare(char *fisier) {
     root = listaNoduri[0];
     int pos;
     int *arr = (int*)malloc(sizeof(int)*height);
-
+    parcurgere(root);
     f = fopen(fisier, "r");
     FILE *g = fopen("output.txt","w");
+    printArbore(root,g);
+    fprintf(g,"\n");
     while (fgets(intrare, sizeof(intrare), f)) {
         for (i = 0; i < strlen(intrare); i++) {
             pos=0;
             cauta(intrare[i], root, pos, arr, g);
+            fprintf(g," ");
         }
     }
     fclose(f);
