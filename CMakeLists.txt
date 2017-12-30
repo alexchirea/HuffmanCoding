@@ -3,5 +3,5 @@ project(HuffmanCoding)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c codificare.h definitii.h)
+set(SOURCE_FILES main.c codificare.h definitii.h decodificare.h)
 add_executable(HuffmanCoding ${SOURCE_FILES})

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "codificare.h"
+#include "decodificare.h"
 
 
 //Creat de Alexandru-Cornel Chirea
@@ -12,13 +13,13 @@ int main() {
 
     //printf("Introduceti 1 pentru codificare sau 2 pentru decodificare, dupa care apasati tasta Enter.\nOptiune = ");
     //scanf("%d", &optiune);
-    optiune = 1;
+    optiune = 2;
     switch (optiune) {
         case 1:
             codificare("huffman.txt");
             break;
         case 2:
-            //decodificare
+            decodificare("output.txt");
             break;
         default:
             printf("\nEROARE: Optiunea introdusa nu exista!\n");

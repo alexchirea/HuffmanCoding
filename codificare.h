@@ -10,6 +10,7 @@
 
 void codificare(char *fisier) {
     FILE *f = fopen(fisier, "r");
+    FILE *g = fopen("output.txt", "w");
     int i, frecv[500] = {0}, nrcar = 0, start = 9999, stop = 0, k = 0, height;
     char intrare[1001];
     while (fgets(intrare, sizeof(intrare), f)) {
@@ -26,10 +27,12 @@ void codificare(char *fisier) {
             k++;
         }
     }
+    fprintf(g, "%d ", k);
     struct Nod **listaNoduri = (struct Nod **) malloc(sizeof(struct Nod *) * k);
     k = 0;
     for (i = start; i <= stop; i++) {
         if (frecv[i]) {
+            fprintf(g, "%c %d ", i, frecv[i]);
             struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
             nodNou->caracter = i;
             nodNou->valoare = frecv[i];
@@ -39,6 +42,7 @@ void codificare(char *fisier) {
             k++;
         }
     }
+    fprintf(g, "\n");
     sortare(listaNoduri, k - 1);
     int o = k;
     while (o) {
@@ -62,17 +66,12 @@ void codificare(char *fisier) {
     struct Nod *root = (struct Nod *) malloc(sizeof(struct Nod));
     root = listaNoduri[0];
     int pos;
-    int *arr = (int*)malloc(sizeof(int)*height);
-    parcurgere(root);
+    int *arr = (int *) malloc(sizeof(int) * height);
     f = fopen(fisier, "r");
-    FILE *g = fopen("output.txt","w");
-    printArbore(root,g);
-    fprintf(g,"\n");
     while (fgets(intrare, sizeof(intrare), f)) {
         for (i = 0; i < strlen(intrare); i++) {
-            pos=0;
+            pos = 0;
             cauta(intrare[i], root, pos, arr, g);
-            fprintf(g," ");
         }
     }
     fclose(f);

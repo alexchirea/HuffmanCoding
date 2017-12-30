@@ -57,26 +57,25 @@ void parcurgere(struct Nod *nod) {
 
 void printArbore(struct Nod *nod, FILE *g) {
     if (nod->st != NULL) {
-        fprintf(g,"#");
-        printArbore(nod->st,g);
-        printArbore(nod->dr,g);
+        fprintf(g, "#");
+        printArbore(nod->st, g);
+        printArbore(nod->dr, g);
     } else {
-        fprintf(g,"%c", nod->caracter);
+        fprintf(g, "%c", nod->caracter);
     }
 }
 
 int cauta(int caracter, struct Nod *nod, int pos, int *arr, FILE *g) {
     if (nod->st != NULL) {
         arr[pos] = 0;
-        cauta(caracter,nod->st,pos+1,arr,g);
+        cauta(caracter, nod->st, pos + 1, arr, g);
 
         arr[pos] = 1;
-        cauta(caracter,nod->dr,pos+1,arr,g);
-    }
-    else {
+        cauta(caracter, nod->dr, pos + 1, arr, g);
+    } else {
         if (nod->caracter == caracter) {
-            for (int i=0; i<pos; i++)
-                fprintf(g,"%d",arr[i]);
+            for (int i = 0; i < pos; i++)
+                fprintf(g, "%d", arr[i]);
         }
     }
 }
@@ -90,5 +89,4 @@ void elibereaza(struct Nod *nod) {
         free(nod);
     }
 }
-
 #endif HUFFMANCODING_DEFINITII_H
