@@ -32,7 +32,7 @@ void codificare(char *fisier) {
     k = 0;
     for (i = start; i <= stop; i++) {
         if (frecv[i]) {
-            fprintf(g, "%c %d ", i, frecv[i]);
+            fprintf(g, "%d %d ", i, frecv[i]);
             struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
             nodNou->caracter = i;
             nodNou->valoare = frecv[i];
@@ -62,8 +62,7 @@ void codificare(char *fisier) {
         sortare(listaNoduri, o - 1); // ??????
         height++;
     }
-    //parcurgere(listaNoduri[0]);
-    struct Nod *root = (struct Nod *) malloc(sizeof(struct Nod));
+    struct Nod *root;
     root = listaNoduri[0];
     int pos;
     int *arr = (int *) malloc(sizeof(int) * height);
@@ -76,15 +75,7 @@ void codificare(char *fisier) {
     }
     fclose(f);
     fclose(g);
-
-    /*for (i = start; i <= stop; i++) {
-        if (frecv[i]) {
-            pos = 0;
-            printf("%c ", i);
-            cauta(i, root, pos, arr,g);
-        }
-    }*/
-    elibereaza(listaNoduri[0]);
+    elibereaza(root);
     free(listaNoduri);
 }
 

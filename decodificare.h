@@ -11,42 +11,19 @@
 #include "definitii.h"
 
 void decodificare(char *fisier) {
-    int i, k = 0, y, cifre = 0, nr, c, a;
-    char intrare[1001];
+    int i, k = 0, val, car;
     FILE *f = fopen(fisier, "r");
     FILE *g = fopen("decodat.txt", "w");
-    fscanf(f, "%d", &k);
-    printf("%d", k);
-    fgets(intrare, sizeof(intrare), f);
-    i = k;
-    while (i) {
-        cifre++;
-        i /= 10;
-    }
+    fscanf(f, "%d ", &k);
     struct Nod **listaNoduri = (struct Nod **) malloc(sizeof(struct Nod *) * k);
-    a = k;
-    k = 0;
-    for (i = cifre + 1; i < strlen(intrare); i++) {
-        y = intrare[i];
-        i+=2;
-        c = intrare[i];
-        nr = 0;
-        while (c != ' ') {
-            nr = nr * 10 + c;
-            i++;
-            c = intrare[i];
-        }
-        printf("%c %d", y, nr);
+    for (i=0; i<k; i++) {
+        fscanf(f,"%d %d",&car,&val);
         struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
-        nodNou->caracter = y;
-        nodNou->valoare = nr;
+        nodNou->caracter = car;
+        nodNou->valoare = val;
         nodNou->st = NULL;
         nodNou->dr = NULL;
-        listaNoduri[k] = nodNou;
-        k++;
-        if (a == k) {
-            break;
-        }
+        listaNoduri[i] = nodNou;
     }
     sortare(listaNoduri, k - 1);
     int o = k;
@@ -66,34 +43,28 @@ void decodificare(char *fisier) {
         }
         sortare(listaNoduri, o - 1);
     }
-    struct Nod *root = (struct Nod *) malloc(sizeof(struct Nod));
+    struct Nod *root;
     root = listaNoduri[0];
-    while (1) {
-        y = fgetc(f);
-        if (y == '\n') {
-            break;
-        }
-    }
-    while (1) {
-        y = fgetc(f);
-        if (feof(f)) {
-            break;
-        }
-        printf("%c ", y);
-        if (root->st != NULL) {
-            if (y == '0') {
-                root = root->st;
-            } else {
-                root = root->dr;
-            }
-        } else {
+    fgetc(f); fgetc(f);
+    while(1) {
+        car = fgetc(f);
+        if (root->caracter!=0) {
             fprintf(g, "%c", root->caracter);
-            //printf("%c", root->caracter);
             root = listaNoduri[0];
+        }
+        if (car == '0') {
+            root = root->st;
+        } else {
+            root = root->dr;
+        }
+        if (car == EOF) {
+            break;
         }
     }
     fclose(f);
     fclose(g);
+    elibereaza(root);
+    free(listaNoduri);
 }
 
 #endif HUFFMANCODING_DECODIFICARE_H
