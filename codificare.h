@@ -10,6 +10,10 @@
 
 void codificare(char *fisier) {
     FILE *f = fopen(fisier, "r");
+    if (!f) {
+        printEroare(fisierInexistentCodificare);
+        return;
+    }
     FILE *g = fopen("output.txt", "w");
     int i, frecv[500] = {0}, nrcar = 0, start = 9999, stop = 0, k = 0, height;
     char intrare[1001];
@@ -79,4 +83,4 @@ void codificare(char *fisier) {
     free(listaNoduri);
 }
 
-#endif HUFFMANCODING_CODIFICARE_H
+#endif //HUFFMANCODING_CODIFICARE_H

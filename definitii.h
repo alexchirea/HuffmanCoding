@@ -19,7 +19,15 @@ struct Nod {
     struct Nod *dr;
 };
 
-void adaugare();
+struct Pereche {
+    int val;
+    int car;
+};
+
+enum Erori {
+    fisierInexistentCodificare,
+    fisierInexistentDecodificare
+};
 
 void sortare(struct Nod **lista, int k) {
     int i, o = 0;
@@ -89,4 +97,13 @@ void elibereaza(struct Nod *nod) {
         free(nod);
     }
 }
-#endif HUFFMANCODING_DEFINITII_H
+
+void printEroare (enum Erori eroare) {
+    if (eroare == 0) {
+        printf("Fisierul 'huffman.txt' nu exista!");
+    }
+    else if (eroare == 1) {
+        printf("Fisierul 'output.txt' nu exista!");
+    }
+}
+#endif //HUFFMANCODING_DEFINITII_H

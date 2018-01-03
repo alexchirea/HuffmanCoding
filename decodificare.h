@@ -11,16 +11,21 @@
 #include "definitii.h"
 
 void decodificare(char *fisier) {
-    int i, k = 0, val, car;
+    int i, k = 0;
+    struct Pereche x;
     FILE *f = fopen(fisier, "r");
-    FILE *g = fopen("decodat.txt", "w");
+    if (!f) {
+        printEroare(fisierInexistentDecodificare);
+        return;
+    }
+        FILE *g = fopen("decodat.txt", "w");
     fscanf(f, "%d ", &k);
     struct Nod **listaNoduri = (struct Nod **) malloc(sizeof(struct Nod *) * k);
     for (i=0; i<k; i++) {
-        fscanf(f,"%d %d",&car,&val);
+        fscanf(f,"%d %d",&x.car,&x.val);
         struct Nod *nodNou = (struct Nod *) malloc(sizeof(struct Nod));
-        nodNou->caracter = car;
-        nodNou->valoare = val;
+        nodNou->caracter = x.car;
+        nodNou->valoare = x.val;
         nodNou->st = NULL;
         nodNou->dr = NULL;
         listaNoduri[i] = nodNou;
@@ -47,17 +52,17 @@ void decodificare(char *fisier) {
     root = listaNoduri[0];
     fgetc(f); fgetc(f);
     while(1) {
-        car = fgetc(f);
+        x.car = fgetc(f);
         if (root->caracter!=0) {
             fprintf(g, "%c", root->caracter);
             root = listaNoduri[0];
         }
-        if (car == '0') {
+        if (x.car == '0') {
             root = root->st;
         } else {
             root = root->dr;
         }
-        if (car == EOF) {
+        if (x.car == EOF) {
             break;
         }
     }
@@ -67,4 +72,4 @@ void decodificare(char *fisier) {
     free(listaNoduri);
 }
 
-#endif HUFFMANCODING_DECODIFICARE_H
+#endif //HUFFMANCODING_DECODIFICARE_H
